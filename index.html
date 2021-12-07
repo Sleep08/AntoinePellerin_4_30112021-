@@ -40,27 +40,27 @@
             Vous aimez jouer ? Notre prochain évènement gaming est ouvert
             aux réservations... Places limitées !
           </p>
-          <button class="btn-signup modal-btn">
+          <button id="btninscription" class="btn-signup modal-btn">
             je m'inscris
           </button>
         </div>
         <div class="hero-img">
           <img src="./bg_img.jpg" alt="img" />
         </div>
-        <button class="btn-signup modal-btn">
+        <button id="btninscriptionDeux" class="btn-signup modal-btn">
           je m'inscris
         </button>
       </div>
-
       <div class="bground">
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
             <form
+              id="formInscription"
               name="reserve"
-              action="index.html"
+              action="confirmation.html"
               method="get"
-              onsubmit="return validate();"
+              onsubmit="return validate()"
             >
               <div
                 class="formData">
@@ -71,7 +71,10 @@
                   id="first"
                   name="first"
                   minlength="2"
-                /><br>
+                  placeholder="Minimum deux caractères." 
+                />
+                <p id="erreurprenom"></p>
+                <br>
               </div>
               <div
                 class="formData">
@@ -81,8 +84,11 @@
                   type="text"
                   id="last"
                   name="last"
-                  minlength="2" 
-                /><!--Ajout du minim caractères--><br>
+                  minlength="2"
+                  placeholder="Minimum deux caractères." 
+                />
+                <p id="erreurnom"></p>
+                <br>
               </div>
               <div
                 class="formData">
@@ -92,7 +98,9 @@
                   type="email"
                   id="email"
                   name="email"
-                /><br>
+                />
+                <p id="erreurmail"></p>
+                <br>
               </div>
               <div
                 class="formData">
@@ -102,12 +110,14 @@
                   type="date"
                   id="birthdate"
                   name="birthdate"
-                /><br>
+                />
+                <br>
               </div>
               <div
                 class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <p id="erreurnbTournoi"></p>
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div
@@ -179,6 +189,7 @@
                   Portland</label
                 >
               </div>
+              <p id="erreurcity"></p>
 
               <div
                 class="formData" id="box-choice">
@@ -200,16 +211,19 @@
                 </label>
                 <br>
               </div>
+              <p id="erreurconditions"></p>
               <input
-                id="btn-confirm"
                 class="btn-submit"
                 type="submit"
                 class="button"
-                value="C'est parti"
+                value="C'est parti !"
               />
             </form>
           </div>
         </div>
+      </div>
+      <div id="formenvoye">
+        <p>Félicitations ! Votre inscription est bien enregistrée !</p>
       </div>
     </main>
     <footer>
@@ -218,5 +232,6 @@
       </p>
     </footer>
     <script src="modal.js"></script>
+    <script src="gameon.js"></script>
   </body>
 </html>
