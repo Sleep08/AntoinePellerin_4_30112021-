@@ -131,6 +131,11 @@ main {
   background: #3876ac;
 }
 
+button a{
+  text-decoration: none;
+  color: white;
+}
+
 .footer {
   margin: 20px;
   padding: 10px;
@@ -527,12 +532,25 @@ footer {
   }
 }
 
-/* MISE EN PAGE VALIDATION FORM. */
-
-input:invalid{
-  border: 2px solid red;
+/* Messages d'erreur Modal */
+#erreurprenom, #erreurnom, #erreurmail, #erreurnbTournoi, #erreurcity, #erreurconditions{
+  display: none;
+  font-size: 0.7em;
+  color: red;
 }
 
-input:valid{
-  border: 2px solid grey;
+/* Le formulaire est bien envoyé ! */
+
+#formenvoye{
+  display: none;
+  z-index: 2;
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute;
+  color: #fff;
+  padding-top: 10px;
 }
