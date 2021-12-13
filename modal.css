@@ -31,17 +31,18 @@ img {
 }
 
 .topnav {
-  overflow: hidden;
   margin: 3.5%;
+  overflow: hidden;
 }
 .header-logo {
     float: left;
 }
+
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
-  float: left;
+  float: right;
   display: block;
   color: #000000;
   text-align: center;
@@ -69,10 +70,33 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+  .topnav{
+    z-index: 1000;
+    background-color: white;
+    margin-top: 0px;
+    margin-left: 0px;
+    width: 100%;
+  }
+  .topnav a {
+    float: right;
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
+    position: relative;
+    color: red; /*couleur de la maquette */
+    /* && retrait de la marge négative */
+    padding-right: 30px;
+    padding-top: 25px;
+    font-size: 1.5em;
+  }
+  .topnav a.icon:hover {
+    background: none;
+  }
+  .header-logo {
+    padding-left: 30px;
+    padding-top: 20px;
   }
 }
 
@@ -82,22 +106,35 @@ img {
     position: absolute;
     right: 0;
     top: 0;
+    color: red; /*couleur de la maquette */
+    /* && retrait de la marge négative */
+  }
+  .topnav.responsive .icon:hover {
+    background: none;
   }
   .topnav.responsive a {
-    float: none;
+    position: relative;
+    float: right;
+    text-align: right;
     display: block;
-    text-align: left;
+    width: 55%;
   }
 }
-
-
 
  @media screen and (max-width: 540px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
+    color: red; /*couleur de la maquette */
+    /* && retrait de la marge négative */
+  }
+  .topnav a.icon:hover {
+    background: none;
+  }
+  .header-logo img{
+    padding-top: 15px;
+    width: 50%;
   }
 } 
 
@@ -111,8 +148,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -165,7 +200,7 @@ button a{
 .bground {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   left: 0;
   top: 0;
   height: 100%;
@@ -231,12 +266,7 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -463,6 +493,7 @@ input[data-error]::after {
   grid-column: span 8;
 }
 .hero-img img {
+  object-fit: cover;
   width: 100%;
   height: 100%;
   display: block;
@@ -484,6 +515,9 @@ footer {
   margin: 0 20px;
 }
 @media screen and (max-width: 800px) {
+  .bground{
+    margin-top: 55px;
+  }
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -491,7 +525,7 @@ footer {
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    padding:0px;
   }
   .hero-content::after {
     content: unset;
@@ -500,12 +534,16 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 2.4rem; /*Diminution pour la lisibilité */
     white-space: normal;
+    width: 80%;
+    font-weight: bold; /*texte en gras pour lisibilité */
   }
   .hero-text {
-    width: unset;
-    font-size: 1.5rem;
+    width: 75%;
+    font-size: 1.4rem;
+    white-space:normal;
+    margin-top: 10px;
   }
   .hero-img img {
     border-radius: 10px;
@@ -533,24 +571,30 @@ footer {
 }
 
 /* Messages d'erreur Modal */
-#erreurprenom, #erreurnom, #erreurmail, #erreurnbTournoi, #erreurcity, #erreurconditions{
+#erreurprenom, #erreurnom, #erreurmail, #erreurdate, #erreurnbTournoi, #erreurcity, #erreurconditions{
   display: none;
   font-size: 0.7em;
   color: red;
 }
 
-/* Le formulaire est bien envoyé ! */
+/* Message de confirmation */
 
-#formenvoye{
-  display: none;
-  z-index: 2;
-  margin: 5% auto;
+.validation {
+  margin: 50% auto;
   width: 100%;
-  max-width: 500px;
+  max-height: 500px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
   background: #232323;
   border-radius: 10px;
   overflow: hidden;
-  position: absolute;
+  position: relative;
   color: #fff;
   padding-top: 10px;
+}
+
+/* Bouton de fermeture */
+
+#closeBtn {
+  display: none;
 }
