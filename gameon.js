@@ -8,7 +8,6 @@ const birthDate = document.getElementById('birthdate');
 const nbTournoi = document.getElementById('quantity');
 const checkLocation = document.querySelectorAll('#choixlocation .checkbox-input');
 const boxChoice = document.getElementById('checkbox1');
-const formenvoye = document.getElementById('formenvoye');
 /* VERIFICATION DES ELEMENTS DU FORM */
 
 /*nom et prénom ne doivent pas être vides */
@@ -85,11 +84,13 @@ function nomOk() {
 }*/
 /* ENVOI DU FORMULAIRE */
 formInscription.addEventListener("submit", function(e) {
+    e.preventDefault();
 //Déclaration de l'ensemble des critères pour afficher message d'erreur
 //si le champ n'est pas bien complété.
     let prenomOk = true;
     let nomOk = true;
     let emailOk = true;
+    let birthDateOk = true;
     let nbTournoiOk = true;
     let cityOk = false;
     let conditionsOk = true;
@@ -115,7 +116,11 @@ formInscription.addEventListener("submit", function(e) {
         inscriptionOk = false;
     }
 //Vérification de la date de naissance :
-
+    let pattern =/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+    if (!birthDate.value.trim().match(pattern)){
+        birthDateOk = false;
+        inscriptionOk = false;
+    }
 //Vérification du nombre de tournois :
     let ra = /^[0-9]$|^[1-9][0-9]$|^(99)$/;
     if (!nbTournoi.value.trim().match(ra)){
@@ -124,9 +129,11 @@ formInscription.addEventListener("submit", function(e) {
     }
 // Vérification d'une ville sélectionnée :
     for (var i = 0; i < checkLocation.length; i++) { 
+        console.log(checkLocation.item(i).checked);
         if (checkLocation.item(i).checked) {
             cityOk = true;
-        }
+            inscriptionOk = true;
+        } 
     }
 // Vérification des conditions générales cochées :
     if (!boxChoice.checked) {
@@ -159,6 +166,14 @@ formInscription.addEventListener("submit", function(e) {
         email.style.border='2px solid red';       
         document.getElementById('erreurmail').innerHTML="> Veuillez entrer une adresse mail valide.";
     }
+    if(birthDateOk){
+        document.getElementById('erreurdate').style.display='none';    
+        birthDate.style.border='2px solid green';    
+    } else {
+        document.getElementById('erreurdate').style.display='block'; 
+        birthDate.style.border='2px solid red';       
+        document.getElementById('erreurdate').innerHTML="> Veuillez renseigner votre date de naissance au format xx/xx/xxxx (exemple : 12/09/1993).";
+    }
     if(nbTournoiOk){
         document.getElementById('erreurnbTournoi').style.display='none';    
         nbTournoi.style.border='2px solid green';    
@@ -180,13 +195,22 @@ formInscription.addEventListener("submit", function(e) {
         document.getElementById('erreurconditions').innerHTML="> Veuillez accepter les conditions d'utilisation.";
     }
 //Déclanche message de validation si tout est Ok :
-    if(inscriptionOk){
-    alert('Formulaire Envoyé !');
+    if(inscriptionOk && cityOk){
+    alert('Félicitations ! Votre réservation a bien été reçue !');
+    document.getElementById('formulaireContain').innerHTML="Félicitations !</br> Votre réservation est bien enregistrée."
+    document.getElementById('formulaireContain').classList.add("validation");
+    document.getElementById('closeBtn').style.display='block';
+    document.getElementById('btn-submit').style.display='none';
     } else {
-        alert('Il manque des informations');
-        e.preventDefault();  
+        alert('Merci de remplir chaque champ.'); 
     }
 });
+
+// Fermer le modal après la validation au click du btn :
+
+document.getElementById('closeBtn').addEventListener('click', function(){
+    document.querySelector('.bground').style.display='none';
+})
 
 
 /*function validate(event){
