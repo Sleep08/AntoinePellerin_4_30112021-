@@ -70,8 +70,12 @@ img {
 }
 
 @media screen and (max-width: 768px) {
+  .hero-section{
+    margin-top: 15%;
+  }
   .topnav{
-    z-index: 1000;
+    z-index: 3;
+    position: fixed;
     background-color: white;
     margin-top: 0px;
     margin-left: 0px;
@@ -117,11 +121,14 @@ img {
     float: right;
     text-align: right;
     display: block;
-    width: 55%;
+    width: 49%;
   }
 }
 
  @media screen and (max-width: 540px) {
+  .hero-section{
+    margin-top: 25%;
+  }
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -136,7 +143,28 @@ img {
     padding-top: 15px;
     width: 50%;
   }
+  .hero-headline {
+    font-size: 2.4rem; /*Diminution pour la lisibilité */
+    white-space: normal;
+    width: 80%;
+    font-weight: bold; /*texte en gras pour lisibilité */
+  }
+  .hero-text {
+    width: 65%;
+    font-size: 1.4rem;
+    white-space:normal;
+    margin-top: 10px;
+  }
 } 
+
+@media screen and (max-width: 368px) {
+  .topnav {
+    position: relative;
+  }
+  .topnav a.icon {
+    margin-left: -55px;
+  }
+}
 
 main {
   font-size: 130%;
@@ -202,7 +230,7 @@ button a{
   position: fixed;
   z-index: 2;
   left: 0;
-  top: 0;
+  top:0;
   height: 100%;
   width: 100%;
   overflow: auto;
@@ -210,9 +238,11 @@ button a{
 }
 
 .content {
+  margin-top:-5%;
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
+  height: auto;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -220,7 +250,6 @@ button a{
   overflow: hidden;
   position: relative;
   color: #fff;
-  padding-top: 10px;
 }
 
 .modal-body {
@@ -536,7 +565,7 @@ footer {
   .hero-headline {
     font-size: 2.4rem; /*Diminution pour la lisibilité */
     white-space: normal;
-    width: 80%;
+    width: 90%;
     font-weight: bold; /*texte en gras pour lisibilité */
   }
   .hero-text {
